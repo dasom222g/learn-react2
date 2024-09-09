@@ -37,19 +37,15 @@ function App() {
   };
 
   const userInput = "";
-  let isView = false;
 
   if (user2.id !== "dasom222g" && user2.password === "password") {
     // 1차 조건 판별
     user2.isLoggedIn = true;
-    isView = true;
     if (userInput) {
       // 사용자 입력값이 있는 경우
     } else {
       // 사용자 입력값이 없는 경우
     }
-  } else {
-    isView = false;
   }
 
   // Default parameter
@@ -87,7 +83,8 @@ function App() {
     message: "안녕하세요",
   };
 
-  const { name: personName, age, email } = person;
+  const { name: personName } = person;
+  console.log("🚀~ personName:", personName);
 
   const copyPeroson = {
     ...person,
@@ -99,18 +96,9 @@ function App() {
 
   // view
   return (
-    <>
-      {isView && (
-        <div>
-          <div>Hello world</div>
-          <div>Hello world</div>
-          <div>Hello world</div>
-          <div>Hello world</div>
-          <div>Hello world</div>
-        </div>
-      )}
+    <div>
       <Card />
-    </>
+    </div>
   );
 }
 
