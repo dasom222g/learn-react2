@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Card from "./components/Card";
+import Counter from "./components/Counter";
 
 function App() {
   // logic
@@ -94,10 +96,20 @@ function App() {
   };
   console.log("🚀 ~ copyPeroson:", copyPeroson);
 
+  const [title, setTitle] = useState("후츠릿 짱");
+
+  console.log("click");
+
+  const handleClick = () => {
+    window.location.href = "https://www.naver.com/";
+  };
+
   // view
   return (
     <div>
-      <Card />
+      <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
+      <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
+      {/* <Counter /> */}
     </div>
   );
 }

@@ -1,8 +1,15 @@
 import React from "react";
 
-const CardButton = () => {
+const CardButton = ({ onCardButtonClick }) => {
+  // logic
+  const handleClick = () => {
+    console.log("click!!");
+    onCardButtonClick();
+  };
+
+  // view
   return (
-    <button type="button" className="card-button">
+    <button type="button" className="card-button" onClick={handleClick}>
       Go somewhere
     </button>
   );
