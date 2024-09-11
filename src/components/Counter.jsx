@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Counter = () => {
   // logic
@@ -18,6 +18,9 @@ const Counter = () => {
    */
 
   const [counter, setCounter] = useState(0);
+  const [counter2, setCounter2] = useState(0);
+  const [counter3, setCounter3] = useState(0);
+  const [counter4, setCounter4] = useState(0);
 
   const increase = () => {
     // counter의 값을 변경
@@ -34,6 +37,20 @@ const Counter = () => {
       setCounter((prev) => prev - 1);
     }
   };
+
+  // 1. 컴포넌트에 존재하는 state가 하나라도 변경시 실행
+  useEffect(() => {});
+
+  // 2. 컴포넌트가 마운트 될때(화면에 보여지는 순간) 딱 1번 실행
+  // 초기화 할때
+  useEffect(() => {
+    console.log("딱 1번 실행!!!");
+  }, []);
+
+  // 3. 의존성 state 변경시 실행
+  useEffect(() => {
+    console.log("counter 변경 될때마다");
+  }, [counter]);
 
   // view
   return (

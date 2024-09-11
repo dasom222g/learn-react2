@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./components/Card";
 import Counter from "./components/Counter";
 import ThemeButton from "./components/ThemeButton";
@@ -135,22 +135,29 @@ function App() {
   ]); // length값: 1
 
   const handleTheme = () => {
+    // 2.
+    // 4.
     setIsDarkMode(!isDarkMode);
   };
+
+  useEffect(() => {
+    // 1.
+    // 3.
+    console.log(isDarkMode ? "다크 모드" : "라이트 모드");
+  }, []);
 
   // view
   return (
     <div className={`wrap ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
-      <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
       {/* <Counter /> */}
-      {/* ThemeButton 컴포넌트 */}
+      <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
+      <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
       <ThemeButton isDarkMode={isDarkMode} onTheme={handleTheme} />
 
       {/* 삼항 연산자 */}
-      {isLoggedIn ? <h2>환영 합니다</h2> : <h2>로그인 해주세요</h2>}
+      {/* {isLoggedIn ? <h2>환영 합니다</h2> : <h2>로그인 해주세요</h2>} */}
       {/* && 연산자 */}
-      {messages.length && <h2>새로운 메시지가 {messages.length}개 있습니다</h2>}
+      {/* {messages.length && <h2>새로운 메시지가 {messages.length}개 있습니다</h2>} */}
     </div>
   );
 }
