@@ -108,7 +108,7 @@ function App() {
   1. ThemeButton에 온클릭 이벤트를 만든다
   2. 버튼이 눌려졌다는 이벤트를 부모 컴포넌트에 전송한다.(onTheme)
   3. 부모 컴포넌트가 이벤트를 받으면 div 클래스를 변환하는 함수를 생성한다.(handleTheme)
-  4. [state] isDarkMode라는 state를 생성한다.
+  4. [state] isDarkMode라는 state를 생성한다. (초기값은 false)
   5. isDarkMode state에 따라 wrap클래스가 있는 div에 className의 속성을 다르게 넣어준다.
   5-1.다크모드인 경우엔 'dark-mode'라는 클래스를 준다.
   5-2. 다크모드가 아닌 경우엔 'light-mode'라는 클래스를 준다.
@@ -123,14 +123,20 @@ function App() {
   10. 작동이 잘 되는지 바뀌는걸 확인한다.
    */
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   // view
   return (
-    <div className="wrap">
+    <div className={`wrap ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
       <Card title={title} subText="서브 텍스트" onCardClick={handleClick} />
       {/* <Counter /> */}
       {/* ThemeButton 컴포넌트 */}
-      <ThemeButton />
+      <ThemeButton isDarkMode={isDarkMode} onTheme={handleTheme} />
     </div>
   );
 }
