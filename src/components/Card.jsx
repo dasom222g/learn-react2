@@ -10,6 +10,8 @@ const Card = ({ title, subText, onCardClick }) => {
     onCardClick();
   };
 
+  console.log("Card 리렌더링!!");
+
   // view
   return (
     <div className="card">

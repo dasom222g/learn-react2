@@ -125,6 +125,15 @@ function App() {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      text: "첫번째 메시지",
+    },
+  ]); // length값: 1
+
   const handleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -137,6 +146,11 @@ function App() {
       {/* <Counter /> */}
       {/* ThemeButton 컴포넌트 */}
       <ThemeButton isDarkMode={isDarkMode} onTheme={handleTheme} />
+
+      {/* 삼항 연산자 */}
+      {isLoggedIn ? <h2>환영 합니다</h2> : <h2>로그인 해주세요</h2>}
+      {/* && 연산자 */}
+      {messages.length && <h2>새로운 메시지가 {messages.length}개 있습니다</h2>}
     </div>
   );
 }
