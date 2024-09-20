@@ -134,6 +134,16 @@ function App() {
     },
   ]); // length값: 1
 
+  // TodoList 상태
+  const [todoList, setTodoList] = useState([]);
+
+  const [value, setValue] = useState("");
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setValue(value);
+  };
+
   const handleTheme = () => {
     // 2.
     // 4.
@@ -145,6 +155,40 @@ function App() {
     // 3.
     console.log(isDarkMode ? "다크 모드" : "라이트 모드");
   }, []);
+
+  // 진입시 한번만 실행
+  useEffect(() => {
+    const initialTodoList = [
+      {
+        id: 1,
+        text: "리액트 리스트 강의",
+      },
+      {
+        id: 2,
+        text: "강의 준비",
+      },
+      {
+        id: 3,
+        text: "헬스 PT",
+      },
+      {
+        id: 4,
+        text: "식단 하기",
+      },
+    ];
+    setTodoList(initialTodoList);
+  }, []);
+
+  const handleSubmit = (event) => {
+    // 새로고침 방지
+    event.preventDefault();
+    console.log("value", value);
+    const newTodo = {
+      id: todoList.length + 1,
+      text: value,
+    };
+    setTodoList([newTodo, ...todoList]);
+  };
 
   // view
   return (
@@ -158,6 +202,21 @@ function App() {
       {/* {isLoggedIn ? <h2>환영 합니다</h2> : <h2>로그인 해주세요</h2>} */}
       {/* && 연산자 */}
       {/* {messages.length && <h2>새로운 메시지가 {messages.length}개 있습니다</h2>} */}
+
+      {/* TodoList  */}
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={value} onChange={handleChange} />
+        <button type="submit">추가</button>
+      </form>
+
+      <ul>
+        {todoList.map((todo) => (
+          <li key={todo.id}>{todo.text}</li>
+        ))}
+        {/* <li>리액트 리스트 강의</li>
+        <li>강의 준비</li>
+        <li>헬스 PT</li> */}
+      </ul>
     </div>
   );
 }
